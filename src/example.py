@@ -8,6 +8,8 @@ import random
 from rich.console import Console
 from rich.table import Table
 from rich.text import Text
+from sklearn.metrics.pairwise import pairwise_distances
+from sklearn.cluster import DBSCAN
 
 NUMBER_OF_COLORS = 15
 
@@ -65,6 +67,20 @@ def make_matrix():
     console.print(table)
     return distance_matrix
 
+# Try out DBScan
+distance_matrix = make_matrix()
+distances = pairwise_distances(distance_matrix, metric="precomputed")
 
-make_matrix()
+# Compute DBSCAN
+db = DBSCAN(eps=10, metric="precomputed", min_samples=1).fit(distances)
+core_samples_mask = np.zeros_like(db.labels_, dtype=bool)
+core_samples_mask[db.core_sample_indices_] = True
+labels = db.labels_
+
+# Number of clusters in labels, ignoring noise if present.
+n_clusters_ = len(set(labels)) - (1 if -1 in labels else 0)
+n_noise_ = list(labels).count(-1)
+
+print("Estimated number of clusters: %d" % n_clusters_)
+print("Estimated number of noise points: %d" % n_noise_)
 
