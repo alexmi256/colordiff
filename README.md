@@ -11,9 +11,11 @@ The colors are stored in RGB, in order to be able to compare them we convert the
 
 ## Color Difference
 Once colors are converted we can compare their similarity using the [CIEDE2000 color difference formula.](https://en.wikipedia.org/wiki/Color_difference#CIEDE2000)
+
 The color difference (aka Delta-E) seems to have a range of 0-100+ where 1.0 is the smallest color difference the human eye can see.
+
 Unfortunately I could not find any sources explaining this more besides [this](http://zschuessler.github.io/DeltaE/learn/) and [this](http://www.colorwiki.com/wiki/Delta_E:_The_Color_Difference)
-Which has the chart:
+which has the following chart:
 
 | Delta-E | Description                            |
 |---------|----------------------------------------|
