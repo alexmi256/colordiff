@@ -1,5 +1,3 @@
-
-from sklearn.metrics.pairwise import pairwise_distances
 from sklearn.cluster import DBSCAN
 from src.example import make_matrix, print_clusters
 
