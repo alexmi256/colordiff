@@ -8,7 +8,6 @@ from rich.console import Console
 from rich.table import Table
 from rich.text import Text
 
-NUMBER_OF_COLORS = 15
 
 # TODO: Instead of console tables, make a heatmap graphic
 # TODO: Instead of console tables, try to make some interactive web graph
@@ -59,19 +58,19 @@ def print_matrix(hex_colors, distance_matrix, title='Color Similarity Matrix'):
     console.print(table)
 
 
-def make_matrix():
+def make_matrix(size=15):
     """
-    Return a 2D numpy array consisting of a distance matrix as well as print out the matrix
+    Make a distance matrix of random terminal colors
     :return:
     """
     # Choose some random color
     all_colors_hex = list(_xterm_colors.values())
-    chosen_colors_hex = random.sample(all_colors_hex, NUMBER_OF_COLORS)
+    chosen_colors_hex = random.sample(all_colors_hex, size)
     chosen_colors_rgb = [sRGBColor.new_from_rgb_hex(x) for x in chosen_colors_hex]
     chosen_colors_lab = [convert_color(x, LabColor) for x in chosen_colors_rgb]
 
     # Generate a similarity matrix of all colors
-    distance_matrix = np.zeros(shape=(NUMBER_OF_COLORS, NUMBER_OF_COLORS), dtype=float)
+    distance_matrix = np.zeros(shape=(size, size), dtype=float)
     for i, color_1 in enumerate(chosen_colors_lab):
         for j, color_2 in enumerate(chosen_colors_lab):
             distance_matrix[i, j] = delta_e_cie2000(color_1, color_2)
@@ -105,5 +104,5 @@ def print_clusters(colors, clusters, distance_matrix):
                 cluster['matrix'][i, j] = distance_matrix[colors.index(color_1), colors.index(color_2)]
 
     for i, cluster in divided_clusters.items():
-        print_matrix(cluster['colors'], cluster['matrix'], title=f'Cluster {i}')
+        print_matrix(cluster['colors'], cluster['matrix'], title=f'Cluster #{i + 1}')
 

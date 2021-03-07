@@ -25,6 +25,18 @@ which has the following chart:
 | 11 - 49 | Colors are more similar than opposite  |
 | 100     | Colors are exact opposite              |
 
-## Similarity Matrix
-Here's the terminal output of the similarity matrix
+## Clustering
+Currently, the algorithms below are implemented.
+
+Each one will print out the full similarity matrix.
 ![15x15 Color Similarity Matrix using CIEDE2000](images/color_similarity_matrix.png "15x15 Color Similarity Matrix using CIEDE2000")
+
+If clusters are found, a smaller similarity matrix for each cluster will be output.
+![Similarity Matrices of each Cluster](images/clustering_matrices.png "Similarity Matrices of each Cluster")
+
+### [DBSCAN](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html#sklearn.cluster.DBSCAN)
+This can be tuned with the `eps` (epsilon) parameter.
+
+### [AgglomerativeClustering](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html#sklearn.cluster.AgglomerativeClustering)
+This can be tuned with the `linkage` and `distance_threshold` parameters.
+
