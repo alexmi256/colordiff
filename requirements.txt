@@ -4,3 +4,8 @@ numpy
 colormath
 colored
 rich
+networkx
+pydot
+pygraphviz
+dash
+plotly
