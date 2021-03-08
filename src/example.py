@@ -63,7 +63,7 @@ def make_matrix(size: int = 15) -> tuple[list, ArrayLike]:
     """
     Creates a distance matrix of the given size
 
-    :param size:
+    :param size: How many colors to randomly choose
     :return:
     """
     # Choose some random color
