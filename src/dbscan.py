@@ -1,6 +1,6 @@
 from sklearn.cluster import DBSCAN
-from src.example import make_matrix, print_clusters
 
+from src.example import make_matrix, print_clusters
 
 # Try out DBScan
 colors, distance_matrix = make_matrix()
@@ -18,6 +18,6 @@ print("Estimated number of clusters: %d" % n_clusters_)
 print("Estimated number of noise points: %d" % n_noise_)
 
 if -1 in labels:
-    print('There were no clusters found')
+    print("There were no clusters found")
 else:
     print_clusters(colors, labels, distance_matrix)
