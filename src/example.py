@@ -4,6 +4,7 @@ from colormath.color_conversions import convert_color
 from colored.hex import _xterm_colors
 import numpy as np
 import random
+from numpy.typing import ArrayLike
 from rich.console import Console
 from rich.table import Table
 from rich.text import Text
@@ -13,7 +14,7 @@ from rich.text import Text
 # TODO: Instead of console tables, try to make some interactive web graph
 
 
-def print_matrix(hex_colors, distance_matrix, title='Color Similarity Matrix'):
+def print_matrix(hex_colors: list[str], distance_matrix: ArrayLike, title: str = 'Color Similarity Matrix'):
     """
     Print out a table for the given
     :param hex_colors: A list of hex color strings
@@ -58,9 +59,11 @@ def print_matrix(hex_colors, distance_matrix, title='Color Similarity Matrix'):
     console.print(table)
 
 
-def make_matrix(size=15):
+def make_matrix(size: int = 15) -> tuple[list, ArrayLike]:
     """
-    Make a distance matrix of random terminal colors
+    Creates a distance matrix of the given size
+
+    :param size:
     :return:
     """
     # Choose some random color
@@ -80,12 +83,13 @@ def make_matrix(size=15):
     return chosen_colors_hex, distance_matrix
 
 
-def print_clusters(colors, clusters, distance_matrix):
+def print_clusters(colors: list[str], clusters: list[int], distance_matrix: ArrayLike):
     """
     Prints out a distance matrix for each calculated cluster
-    :param colors:
-    :param clusters:
-    :param distance_matrix:
+
+    :param colors: A list of color hex codes, each one must start with # (pound)
+    :param clusters: A list of what cluster each color in the colors list should belong to
+    :param distance_matrix: A distance matrix of the colors
     :return:
     """
     print(f'There were {len(set(clusters))} clusters found')
